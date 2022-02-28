@@ -9,4 +9,4 @@ curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && curl -o- -L https://yarnpkg.com/install.sh | bash \
     && npm cache clean --force
 
-xargs sudo chmod a+x $HOME/.yarn/bin/yarn
+xargs sudo chmod a+x "$HOME"/.yarn/bin/yarn

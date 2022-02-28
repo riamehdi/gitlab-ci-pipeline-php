@@ -52,7 +52,7 @@ else
   docker-php-source delete
 fi
 
-if [[ $PHP_VERSION == "8.0" || $PHP_VERSION == "8.1" || $PHP_VERSION == "7.4" ]];
+if [[ $PHP_VERSION == "8.0" || $PHP_VERSION == "8.1" || $PHP_VERSION == "7.4" ]]; then
   docker-php-ext-configure gd --with-freetype --with-jpeg
 else
   docker-php-ext-configure gd \
@@ -84,7 +84,7 @@ docker-php-source extract \
     && docker-php-source delete
 
 docker-php-source extract \
-    && apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS \
+    && apk add --no-cache --virtual .phpize-deps-configure "$PHPIZE_DEPS" \
     && pecl install apcu \
     && docker-php-ext-enable apcu \
     && apk del .phpize-deps-configure \

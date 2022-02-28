@@ -74,26 +74,26 @@ export runtimeDeps=" \
 
 
 apt-get update \
-  && apt-get install -yq $buildDeps \
-  && apt-get install -yq $runtimeDeps \
+  && apt-get install -yq "$buildDeps" \
+  && apt-get install -yq "$runtimeDeps" \
   && rm -rf /var/lib/apt/lists/* \
-  && docker-php-ext-install -j$(nproc) $extensions
+  && docker-php-ext-install -j"$(nproc)" "$extensions"
 
 if [[ $PHP_VERSION == "8.0" || $PHP_VERSION == "7.4" ]]; then
   docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install -j"$(nproc)" gd \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
-    && docker-php-ext-install -j$(nproc) ldap \
+    && docker-php-ext-install -j"$(nproc)" ldap \
     && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install -j$(nproc) imap \
+    && docker-php-ext-install -j"$(nproc)" imap \
     && docker-php-source delete
 else
   docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install -j"$(nproc)" gd \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
-    && docker-php-ext-install -j$(nproc) ldap \
+    && docker-php-ext-install -j"$(nproc)" ldap \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install -j$(nproc) imap \
+    && docker-php-ext-install -j"$(nproc)" imap \
     && docker-php-source delete
 fi
 
@@ -214,4 +214,4 @@ else
   echo 'xdebug.coverage_enable=1' > /usr/local/etc/php/conf.d/20-xdebug.ini
 fi
 
-apt-get purge -yqq --auto-remove $buildDeps
+apt-get purge -yqq --auto-remove "$buildDeps"

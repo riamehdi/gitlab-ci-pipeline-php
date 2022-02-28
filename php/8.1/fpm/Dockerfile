@@ -1,11 +1,11 @@
-FROM php:7.4-fpm
+FROM php:8.1-fpm
 
 ARG BUILD_DATE
 ARG VCS_REF
 
 LABEL maintainer="Eduardo Bizarro <edbizarro@gmail.com>" \
-  PHP="7.4" \
-  NODE="14.17.3" \
+  PHP="8.1" \
+  NODE="14" \
   org.label-schema.name="edbizarro/gitlab-ci-pipeline-php" \
   org.label-schema.description=":coffee: Docker images for build and test PHP applications with Gitlab CI (or any other CI plataform!)" \
   org.label-schema.build-date=$BUILD_DATE \
@@ -19,7 +19,7 @@ ENV HOME=/home/$IMAGE_USER
 ENV COMPOSER_HOME=$HOME/.composer
 ENV PATH=$HOME/.yarn/bin:$PATH
 ENV GOSS_VERSION="0.3.16"
-ENV PHP_VERSION=7.4
+ENV PHP_VERSION=8.1
 
 USER root
 

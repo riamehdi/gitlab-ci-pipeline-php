@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if [[ $PHP_VERSION == "8.0" ]]; then
+if [[ $PHP_VERSION == "8.0" || $PHP_VERSION == "8.1" ]]; then
   export extensions=" \
     bcmath \
     bz2 \
@@ -37,6 +37,7 @@ else
     soap \
     xmlrpc \
     xsl \
+    sockets \
     zip
     "
 fi

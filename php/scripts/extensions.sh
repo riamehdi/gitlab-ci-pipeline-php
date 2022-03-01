@@ -44,8 +44,6 @@ fi
 
 export buildDeps=" \
     default-libmysqlclient-dev \
-    libbz2-dev \
-    libsasl2-dev \
     pkg-config \
     "
 

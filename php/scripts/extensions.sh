@@ -72,7 +72,11 @@ export runtimeDeps=" \
     multiarch-support \
     "
 
-apt-get install -yq "$buildDeps" \
+
+apt-get update \
+  && apt-get install -yq "$buildDeps" \
+
+apt-get update \
   && apt-get install -yq "$runtimeDeps" \
   && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-install -j"$(nproc)" "$extensions"

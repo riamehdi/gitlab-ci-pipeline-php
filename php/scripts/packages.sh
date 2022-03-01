@@ -16,7 +16,8 @@ echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf
 export DEBIAN_FRONTEND=noninteractive
 
   dpkg-reconfigure -f noninteractive tzdata \
-  && apt-get install -yq \
+  && apt-get update \
+  && apt-get -qy --no-install-recommends install \
       apt-transport-https \
       apt-utils \
       ca-certificates \

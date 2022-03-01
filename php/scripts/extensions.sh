@@ -42,11 +42,6 @@ else
     "
 fi
 
-export buildDeps=" \
-    default-libmysqlclient-dev \
-    pkg-config \
-    "
-
 export runtimeDeps=" \
     imagemagick \
     libfreetype6-dev \
@@ -64,7 +59,6 @@ export runtimeDeps=" \
     libssl-dev \
     libuv1-dev \
     libwebp-dev \
-    libxml2-dev \
     libxslt1-dev \
     libzip-dev \
     multiarch-support \
@@ -72,10 +66,7 @@ export runtimeDeps=" \
 
 
 apt-get update \
-  && apt-get --no-install-recommends install -yq "$buildDeps" \
-
-apt-get update \
-  && apt-get --no-install-recommends install -yq "$runtimeDeps" \
+  && apt-get install -yq "$runtimeDeps" \
   && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-install -j"$(nproc)" "$extensions"
 

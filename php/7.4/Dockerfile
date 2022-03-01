@@ -57,7 +57,7 @@ RUN mkdir -p $NVM_DIR && \
 RUN node --version
 RUN npm --version
 
-RUN bash adduser --disabled-password --gecos "" $IMAGE_USER && \
+RUN adduser --disabled-password --gecos "" $IMAGE_USER && \
   echo "PATH=$(yarn global bin):$PATH" >> /root/.profile && \
   echo "PATH=$(yarn global bin):$PATH" >> /root/.bashrc && \
   echo "$IMAGE_USER  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \

@@ -135,12 +135,6 @@ if [[ $PHP_VERSION == "8.0" || $PHP_VERSION == "8.1" ]]; then
     && cd .. \
     && rm -rf xmlrpc \
     && docker-php-ext-enable xmlrpc
-
-    pecl install mongodb \
-      && docker-php-ext-enable mongodb
-else
-  pecl install amqp imagick mongodb \
-    && docker-php-ext-enable amqp imagick mongodb
 fi
 
 git clone "https://github.com/php-memcached-dev/php-memcached.git" \

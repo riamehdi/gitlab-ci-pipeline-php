@@ -76,14 +76,6 @@ git clone --depth 1 -b 3.0.2 "https://github.com/xdebug/xdebug" \
   && docker-php-ext-enable xdebug
 
 docker-php-source extract \
-    && curl -L -o /tmp/redis.tar.gz "https://github.com/phpredis/phpredis/archive/5.3.3.tar.gz" \
-    && tar xfz /tmp/redis.tar.gz \
-    && rm -r /tmp/redis.tar.gz \
-    && mv phpredis-5.3.3 /usr/src/php/ext/redis \
-    && docker-php-ext-install redis \
-    && docker-php-source delete
-
-docker-php-source extract \
     && apk add --no-cache --virtual .phpize-deps-configure "$PHPIZE_DEPS" \
     && pecl install apcu \
     && docker-php-ext-enable apcu \

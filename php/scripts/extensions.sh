@@ -49,7 +49,6 @@ export buildDeps=" \
     "
 
 export runtimeDeps=" \
-    imagemagick \
     libfreetype6-dev \
     libgmp-dev \
     libicu-dev \
@@ -118,27 +117,8 @@ if ! [[ $PHP_VERSION == "8.0" || $PHP_VERSION == "8.1" ]]; then
     && docker-php-source delete
 
   pecl channel-update pecl.php.net \
-    && pecl install redis apcu xdebug \
-    && docker-php-ext-enable redis apcu xdebug
-
-  #AMQP
-  docker-php-source extract \
-    && mkdir /usr/src/php/ext/amqp \
-    && curl -L https://github.com/php-amqp/php-amqp/archive/master.tar.gz | tar -xzC /usr/src/php/ext/amqp --strip-components=1 \
-    && docker-php-ext-install amqp \
-    && docker-php-source delete
-
-  #Imagick
-  cd /usr/local/src \
-    && git clone https://github.com/Imagick/imagick \
-    && cd imagick \
-    && phpize \
-    && ./configure \
-    && make \
-    && make install \
-    && cd .. \
-    && rm -rf imagick \
-    && docker-php-ext-enable imagick
+    && pecl install apcu xdebug \
+    && docker-php-ext-enable apcu xdebug
 
   #XMLRPC
   mkdir /usr/local/src/xmlrpc \
@@ -176,8 +156,8 @@ else
     && docker-php-source delete
 
   pecl channel-update pecl.php.net \
-    && pecl install amqp redis apcu imagick xdebug \
-    && docker-php-ext-enable amqp redis apcu imagick xdebug
+    && pecl install apcu xdebug \
+    && docker-php-ext-enable apcu xdebug
 fi
 
 { \
